@@ -1,0 +1,141 @@
+.container {
+  padding: 32px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #e4e4e7;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #71717a;
+  margin-top: 2px;
+}
+
+.newButton {
+  background-color: #f59e0b;
+  color: #09090b;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.newButton:hover {
+  background-color: #fbbf24;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background-color: #18181b;
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.datebox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 8px;
+  padding: 8px 14px;
+  min-width: 56px;
+  flex-shrink: 0;
+}
+
+.dateMonth {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f59e0b;
+}
+
+.dateDay {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f59e0b;
+  line-height: 1;
+}
+
+.info {
+  flex: 1;
+}
+
+.clientName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e4e4e7;
+}
+
+.jobDetails {
+  font-size: 13px;
+  color: #71717a;
+  margin-top: 3px;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badgeUpcoming {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.badgeToday {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.badgeCompleted {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.time {
+  font-size: 12px;
+  color: #52525b;
+}

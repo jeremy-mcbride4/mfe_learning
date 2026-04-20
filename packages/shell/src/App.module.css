@@ -1,0 +1,99 @@
+.app {
+    display: flex;
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #09090b;
+    color: #e4e4e7;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #18181b;
+    border-right: 1px solid rgba(245, 158, 11, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    flex-shrink: 0;
+}
+
+.brand {
+    padding: 0 20px 24px;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.15);
+    margin-bottom: 16px;
+}
+
+.brandTitle {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f59e0b;
+}
+
+.brandSub {
+    font-size: 11px;
+    color: #71717a;
+    margin-top: 2px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 8px;
+}
+
+.navLink {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #a1a1aa;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
+}
+
+.navLink:hover {
+    color: #e4e4e7;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.navLinkActive {
+    color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.1);
+    border-left: 2px solid #f59e0b;
+}
+
+.main {
+    flex: 1;
+    overflow: auto;
+    background-color: #09090b;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #71717a;
+    font-size: 14px;
+}
+
+.home {
+    padding: 48px;
+    max-width: 600px;
+}
+
+.homeTitle {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f59e0b;
+    margin-bottom: 8px;
+}
+
+.homeSub {
+    color: #71717a;
+    font-size: 15px;
+}

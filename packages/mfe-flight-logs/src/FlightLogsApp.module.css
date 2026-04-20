@@ -1,0 +1,102 @@
+.container {
+  padding: 32px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #e4e4e7;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #71717a;
+  margin-top: 2px;
+}
+
+.newButton {
+  background-color: #f59e0b;
+  color: #09090b;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.newButton:hover {
+  background-color: #fbbf24;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #52525b;
+  padding: 0 16px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background-color 0.1s ease;
+}
+
+.tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.tbody td {
+  padding: 14px 16px;
+  font-size: 13px;
+  color: #a1a1aa;
+  vertical-align: middle;
+}
+
+.clientCell {
+  color: #e4e4e7 !important;
+  font-weight: 500;
+}
+
+.locationCell {
+  color: #71717a !important;
+}
+
+.duration {
+  font-variant-numeric: tabular-nums;
+  color: #e4e4e7 !important;
+  font-weight: 600;
+}
+
+.stat {
+  font-size: 11px;
+  color: #52525b;
+}
+
+.conditionBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #71717a;
+}

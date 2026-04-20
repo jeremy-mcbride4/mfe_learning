@@ -1,0 +1,40 @@
+{
+  "name": "mfe_learning",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Repo to start my micro frontend learning",
+  "main": "index.js",
+  "scripts": {
+    "create-mfe": "node scripts/create-mfe.js",
+    "start": "concurrently --kill-others-on-fail -n \"quotes,scheduling,flight-logs,invoicing,shell\" -c \"blue,green,yellow,magenta,cyan\" \"npm start --workspace=packages/mfe-quotes\" \"npm start --workspace=packages/mfe-scheduling\" \"npm start --workspace=packages/mfe-flight-logs\" \"npm start --workspace=packages/mfe-invoicing\" \"npm start --workspace=packages/shell\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremy-mcbride4/mfe_learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jeremy-mcbride4/mfe_learning/issues"
+  },
+  "homepage": "https://github.com/jeremy-mcbride4/mfe_learning#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-react": "^7.28.5",
+    "babel-loader": "^10.1.1",
+    "concurrently": "^9.2.1",
+    "css-loader": "^7.1.4",
+    "html-webpack-plugin": "^5.6.7",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2",
+    "webpack-dev-server": "^5.2.3"
+  }
+}
