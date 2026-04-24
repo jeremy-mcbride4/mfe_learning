@@ -15,6 +15,7 @@ const componentName = name
   .map(w => w.charAt(0).toUpperCase() + w.slice(1))
   .join('');
 
+const navLabel = name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 const federationName = 'mfe' + componentName;
 const packageName = `@mfe/mfe-${name}`;
 const root = path.resolve(__dirname, '..', 'packages', `mfe-${name}`);
@@ -137,14 +138,71 @@ for (const [filePath, content] of Object.entries(files)) {
 
 console.log(`\n✓ Created packages/mfe-${name}`);
 console.log('\nInstalling dependencies...');
-execSync(
-  'npm install',
-  { cwd: root, stdio: 'inherit' }
-);
+execSync('npm install', { cwd: root, stdio: 'inherit' });
 console.log('\n✓ Dependencies installed');
-console.log('\nNext steps (manual):');
-console.log(`  1. Add to shell webpack.config.js remotes:`);
-console.log(`       ${federationName}: '${federationName}@http://localhost:${port}/remoteEntry.js'`);
-console.log(`  2. Add to shell App.js:`);
-console.log(`       const ${componentName}App = React.lazy(() => import('${federationName}/${componentName}App'));`);
-console.log(`       <Route path="/${name}" element={<Suspense fallback={<div>Loading...</div>}><${componentName}App /></Suspense>} />`);
+
+// --- Wire into shell webpack.config.js ---
+const shellWebpackPath = path.resolve(__dirname, '..', 'packages', 'shell', 'webpack.config.js');
+let shellWebpack = fs.readFileSync(shellWebpackPath, 'utf8');
+shellWebpack = shellWebpack.replace(
+  /(remotes:\s*\{)([\s\S]*?)(\n(\s*)\},)/,
+  (_, open, content, close, whitespace) =>
+    `${open}${content}\n${whitespace}    ${federationName}: '${federationName}@http://localhost:${port}/remoteEntry.js',${close}`
+);
+fs.writeFileSync(shellWebpackPath, shellWebpack);
+console.log('✓ Updated shell/webpack.config.js');
+
+// --- Wire into shell App.js ---
+const shellAppPath = path.resolve(__dirname, '..', 'packages', 'shell', 'src', 'App.js');
+let shellApp = fs.readFileSync(shellAppPath, 'utf8');
+
+// Add lazy import after the last existing React.lazy line
+const lazyRegex = /^(const \w+App = React\.lazy[^\n]+)$/gm;
+let lastLazyMatch = null;
+let m;
+while ((m = lazyRegex.exec(shellApp)) !== null) lastLazyMatch = m;
+if (lastLazyMatch) {
+  const insertAt = lastLazyMatch.index + lastLazyMatch[0].length;
+  shellApp =
+    shellApp.slice(0, insertAt) +
+    `\nconst ${componentName}App = React.lazy(() => import('${federationName}/${componentName}App'));` +
+    shellApp.slice(insertAt);
+}
+
+// Add NavLink before </nav>
+shellApp = shellApp.replace(
+  /(\s*<\/nav>)/,
+  `\n                        <NavLink to="/${name}" className={navLinkStyle}>${navLabel}</NavLink>$1`
+);
+
+// Add Route before </Routes>
+shellApp = shellApp.replace(
+  /(\s*<\/Routes>)/,
+  `\n                        <Route path="/${name}" element={<Suspense fallback={<Loading />}><${componentName}App /></Suspense>} />$1`
+);
+
+fs.writeFileSync(shellAppPath, shellApp);
+console.log('✓ Updated shell/src/App.js');
+
+// --- Update root package.json start script ---
+const EXTRA_COLORS = ['red', 'gray', 'bgBlue', 'bgGreen', 'bgYellow', 'bgMagenta', 'bgWhite', 'bgCyan', 'bgRed'];
+const rootPkgPath = path.resolve(__dirname, '..', 'package.json');
+const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, 'utf8'));
+let startScript = rootPkg.scripts.start;
+
+const usedColors = (startScript.match(/-c "([^"]+)"/) || ['', ''])[1].split(',');
+const nextColor = EXTRA_COLORS.find(c => !usedColors.includes(c)) || 'gray';
+
+startScript = startScript
+  .replace(',shell"', `,${name},shell"`)
+  .replace(',cyan"', `,${nextColor},cyan"`)
+  .replace(
+    '"npm start --workspace=packages/shell"',
+    `"npm start --workspace=packages/mfe-${name}" "npm start --workspace=packages/shell"`
+  );
+
+rootPkg.scripts.start = startScript;
+fs.writeFileSync(rootPkgPath, JSON.stringify(rootPkg, null, 2) + '\n');
+console.log('✓ Updated root package.json start script');
+
+console.log(`\n✓ Done! mfe-${name} is fully wired. Run "npm start" from the repo root to launch everything.\n`);

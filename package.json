@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "create-mfe": "node scripts/create-mfe.js",
-    "start": "concurrently --kill-others-on-fail -n \"quotes,scheduling,flight-logs,invoicing,shell\" -c \"blue,green,yellow,magenta,cyan\" \"npm start --workspace=packages/mfe-quotes\" \"npm start --workspace=packages/mfe-scheduling\" \"npm start --workspace=packages/mfe-flight-logs\" \"npm start --workspace=packages/mfe-invoicing\" \"npm start --workspace=packages/shell\"",
+    "start": "concurrently --kill-others-on-fail -n \"quotes,scheduling,flight-logs,invoicing,store,pilot-profile,shell\" -c \"blue,green,yellow,magenta,white,red,cyan\" \"npm start --workspace=packages/mfe-quotes\" \"npm start --workspace=packages/mfe-scheduling\" \"npm start --workspace=packages/mfe-flight-logs\" \"npm start --workspace=packages/mfe-invoicing\" \"npm start --workspace=packages/mfe-store\" \"npm start --workspace=packages/mfe-pilot-profile\" \"npm start --workspace=packages/shell\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

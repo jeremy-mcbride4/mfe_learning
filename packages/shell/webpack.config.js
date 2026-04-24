@@ -48,10 +48,13 @@ module.exports = {
                 mfeScheduling: 'mfeScheduling@http://localhost:3002/remoteEntry.js',
                 mfeFlightLogs: 'mfeFlightLogs@http://localhost:3003/remoteEntry.js',
                 mfeInvoicing: 'mfeInvoicing@http://localhost:3004/remoteEntry.js',
+                mfeStore: 'mfeStore@http://localhost:3005/remoteEntry.js',
+                mfePilotProfile: 'mfePilotProfile@http://localhost:3006/remoteEntry.js',
             },
             shared: {
                 react: { singleton: true, requiredVersion: '^19.0.0' },
                 'react-dom': { singleton: true, requiredVersion: '^19.0.0' },
+                zustand: { singleton: true, requiredVersion: '^5.0.0' },
             },
         }),
         new HtmlWebpackPlugin({

@@ -39,9 +39,13 @@ module.exports = {
             exposes: {
                 './QuotesApp': './src/QuotesApp',
             },
+            remotes: {
+                mfeStore: 'mfeStore@http://localhost:3005/remoteEntry.js',
+            },
             shared: {
                 react: { singleton: true, requiredVersion: '^19.0.0' },
                 'react-dom': { singleton: true, requiredVersion: '^19.0.0' },
+                zustand: { singleton: true, requiredVersion: '^5.0.0' },
             },
         }),
         new HtmlWebpackPlugin({

@@ -1,4 +1,5 @@
 import React from 'react';
+import store from 'mfeStore/store';
 import styles from './QuotesApp.module.css';
 
 const QUOTES = [
@@ -18,6 +19,12 @@ const BADGE_CLASS = {
 };
 
 export default function QuotesApp() {
+  const { setSelectedQuote } = store;
+
+  const handleQuoteClick = (quote) => {
+    setSelectedQuote(quote);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -29,7 +36,7 @@ export default function QuotesApp() {
       </div>
       <div className={styles.grid}>
         {QUOTES.map(quote => (
-          <div key={quote.id} className={styles.card}>
+          <div key={quote.id} className={styles.card} onClick={() => handleQuoteClick(quote)}>
             <div className={styles.cardHeader}>
               <div>
                 <div className={styles.clientName}>{quote.client}</div>
